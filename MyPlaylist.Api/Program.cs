@@ -1,8 +1,19 @@
+using Microsoft.EntityFrameworkCore;
+using MyPlaylist.Api.Data;
+using MyPlaylist.Api.Extensions;
+using MyPlaylist.Api.Services;
+using MyPlaylist.Api.Services.Contracts;
+
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<MyPlaylistDbContext>(opt => opt.UseSqlServer(connectionString));
+
+builder.Services.AddTransient<IPlaylistService, PlaylistService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 var app = builder.Build();
 
@@ -17,5 +28,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.PrepareDataBase();
 
 app.Run();
