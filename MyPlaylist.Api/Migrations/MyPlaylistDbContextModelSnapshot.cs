@@ -110,16 +110,26 @@ namespace MyPlaylist.Api.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<int>("PlaylistId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("GenreId");
 
-                    b.HasIndex("PlaylistId");
-
                     b.ToTable("Songs");
+                });
+
+            modelBuilder.Entity("PlaylistSong", b =>
+                {
+                    b.Property<int>("PlaylistsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SongsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PlaylistsId", "SongsId");
+
+                    b.HasIndex("SongsId");
+
+                    b.ToTable("PlaylistSong");
                 });
 
             modelBuilder.Entity("SingerSong", b =>
@@ -145,15 +155,22 @@ namespace MyPlaylist.Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyPlaylist.Api.Models.Playlist", "Playlist")
-                        .WithMany("Songs")
-                        .HasForeignKey("PlaylistId")
+                    b.Navigation("Genre");
+                });
+
+            modelBuilder.Entity("PlaylistSong", b =>
+                {
+                    b.HasOne("MyPlaylist.Api.Models.Playlist", null)
+                        .WithMany()
+                        .HasForeignKey("PlaylistsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Genre");
-
-                    b.Navigation("Playlist");
+                    b.HasOne("MyPlaylist.Api.Models.Song", null)
+                        .WithMany()
+                        .HasForeignKey("SongsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SingerSong", b =>
@@ -172,11 +189,6 @@ namespace MyPlaylist.Api.Migrations
                 });
 
             modelBuilder.Entity("MyPlaylist.Api.Models.Genre", b =>
-                {
-                    b.Navigation("Songs");
-                });
-
-            modelBuilder.Entity("MyPlaylist.Api.Models.Playlist", b =>
                 {
                     b.Navigation("Songs");
                 });

@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MyPlaylist.Api.Models
+namespace MyPlaylist.Shared.DTO
 {
-    public class Singer : BaseEntity
+    public class SingerDTO
     {
         [Key]
         public int Id { get; set; }
         [Required]
         [MaxLength(30)]
         public string? Name { get; set; }
-        public ICollection<Song> Songs { get; set; } = new HashSet<Song>();
+        public ICollection<SongDTO> Songs { get; set; } = new HashSet<SongDTO>();
     }
 }

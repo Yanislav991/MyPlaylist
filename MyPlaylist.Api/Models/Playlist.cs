@@ -9,6 +9,6 @@ namespace MyPlaylist.Api.Models
         [Required]
         [MaxLength(30)]
         public string? Name { get; set; }
-        public ICollection<Song> Songs { get; set; }
+        public ICollection<Song> Songs { get; set; } = new HashSet<Song>();
     }
 }

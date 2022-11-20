@@ -1,13 +1,14 @@
-﻿using MyPlaylist.Shared.DTO;
+﻿using MyPlaylist.Api.Models;
+using MyPlaylist.Shared.DTO;
 
 namespace MyPlaylist.Api.Services.Contracts
 {
     public interface IPlaylistService
     {
-        Task<PlaylistDTO> GetById(int id);
-        Task<IEnumerable<PlaylistDTO>> GetAll();
-        Task<PlaylistDTO> Create(PlaylistDTO playlistDTO);  
-        Task<PlaylistDTO> Update(PlaylistDTO playlistDTO);  
-        Task<PlaylistDTO> Delete(int id);  
+        Task<Playlist> GetById(int id);
+        Task<IEnumerable<Playlist>> GetAll();
+        Task<Playlist> Create(Playlist playlistDTO);
+        Task<Playlist> Update(Playlist playlistDTO);
+        Task Delete(int id);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyPlaylist.Api.Data;
+using MyPlaylist.Api.Models;
 using MyPlaylist.Api.Services.Contracts;
 using MyPlaylist.Shared.DTO;
 
@@ -13,30 +14,44 @@ namespace MyPlaylist.Api.Services
         {
             this.data = data;
         }
-        public Task<PlaylistDTO> Create(PlaylistDTO playlistDTO)
+        public async Task<Playlist> Create(Playlist playlist)
         {
-            throw new NotImplementedException();
+            if (data.Playlists.FirstOrDefault(x => x.Name == playlist.Name) != null)
+            {
+                throw new ArgumentException("Playlist with this name already exists");
+            }
+            await data.Playlists.AddAsync(playlist);
+            await data.SaveChangesAsync();
+            return await data.Playlists.FirstOrDefaultAsync(x => x.Name == playlist.Name);
         }
 
-        public Task<PlaylistDTO> Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            data.Playlists.Remove(data.Playlists.FirstOrDefault(x => x.Id == id));
+            await data.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<PlaylistDTO>> GetAll()
+        public async Task<IEnumerable<Playlist>> GetAll()
         {
-            var test  = await data.Playlists.ToListAsync();
-            return null;
+            return await data.Playlists.ToListAsync();
         }
 
-        public Task<PlaylistDTO> GetById(int id)
+        public async Task<Playlist> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await data.Playlists.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<PlaylistDTO> Update(PlaylistDTO playlistDTO)
+        public async Task<Playlist> Update(Playlist playlist)
         {
-            throw new NotImplementedException();
+            var record = await data.Playlists.FirstOrDefaultAsync(x=>x.Id == playlist.Id);
+            if (data.Playlists.FirstOrDefault(x => x.Name == playlist.Name) != null)
+            {
+                throw new ArgumentException("Playlist with this name already exists!");
+            }
+            record.Name = playlist.Name;
+            record.LastModified = DateTime.Now;
+            await data.SaveChangesAsync();
+            return await data.Playlists.FirstOrDefaultAsync(x => x.Name == playlist.Name);
         }
     }
 }

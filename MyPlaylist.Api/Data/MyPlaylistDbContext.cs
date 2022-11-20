@@ -20,8 +20,7 @@ namespace MyPlaylist.Api.Data
                 .WithMany(b => b.Singers);
             modelBuilder.Entity<Playlist>()
                 .HasMany(bc => bc.Songs)
-                .WithOne(c => c.Playlist)
-                .HasForeignKey(bc => bc.PlaylistId);
+                .WithMany(x => x.Playlists);
             modelBuilder.Entity<Genre>()
                 .HasMany(x => x.Songs)
                 .WithOne(x => x.Genre);

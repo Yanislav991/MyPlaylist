@@ -11,7 +11,7 @@ namespace MyPlaylist.Api.Models
         public string? Name { get; set; }
         public int GenreId { get; set; }
         public Genre Genre { get; set; }
-        public ICollection<Playlist> Playlists { get; set; }
-        public ICollection<Singer> Singers { get; set; }
+        public ICollection<Playlist> Playlists { get; set; } = new HashSet<Playlist>();
+        public ICollection<Singer> Singers { get; set; } = new HashSet<Singer>();
     }
 }
