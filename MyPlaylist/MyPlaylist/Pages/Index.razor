@@ -1,7 +1,36 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<PageTitle>MyPlaylist</PageTitle>
 
-<h1>Hello, Blazor!</h1>
+<section id="index-main">
+    <section id="index-info">
+        <h2 id="index-header">
+            <span>Music</span> for everyone.
+        </h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+        <section id="index-buttons">
+            <NavLink href="/register" class="imp-button">
+                Register
+            </NavLink>
+            <NavLink href="/login" class="cmn-button">
+                Login
+            </NavLink>
+        </section>
+    </section>
+    <section id="index-image">
+        <div class="img-wrapper">
+            <img src="index-image.png" />
+        </div>
+    </section>
+</section>
+<article id="additional-info">
+    <h2>
+        Information for the application.
+    </h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+    <NavLink class="imp-button">
+        More info
+    </NavLink>
+</article>
 
 
