@@ -2,7 +2,6 @@
 using MyPlaylist.Api.Data;
 using MyPlaylist.Api.Models;
 using MyPlaylist.Api.Services.Contracts;
-using MyPlaylist.Shared.DTO;
 
 namespace MyPlaylist.Api.Services
 {
