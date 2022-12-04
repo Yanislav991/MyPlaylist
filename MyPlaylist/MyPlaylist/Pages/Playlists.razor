@@ -1,0 +1,45 @@
+﻿@page "/playlists/all"
+
+<h2>Playlists</h2>
+
+<section id="playlists">
+    @if (PlaylistsData.Count() == 0)
+    {
+        <h1>Currently there are no playlists in the database!</h1>
+    }
+    else
+    {
+        <table>
+            <thead>
+            <th>
+                Playlist Name
+            </th>
+            <th>
+                Songs Count
+            </th>
+            <th>
+                Details
+            </th>
+            </thead>
+            <tbody>
+                @foreach (var playlist in PlaylistsData)
+                {
+                    var detailsLink = $"/playlists/details/{playlist.Id}";
+                    <tr>
+                        @playlist.Name
+                    </tr>
+                    <tr>
+                        @playlist.Songs.Count();
+                    </tr>
+                    <tr>
+                        <NavLink href=@detailsLink>
+                            <li>All Playlists</li>
+                        </NavLink>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    <Button ButtonStyle="ButtonStyle.Round" Color="Color.Primary">Add new Playlist</Button>
+</section>
+

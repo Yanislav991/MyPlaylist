@@ -17,7 +17,7 @@ namespace MyPlaylist.Api.Controllers
             _mapper = mapper;
             _playlistService = playlistService;
         }
-        [HttpGet("/")]
+        [HttpGet("all")]
         public async Task<ActionResult<IEnumerable<PlaylistDTO>>> Get()
         {
             try
