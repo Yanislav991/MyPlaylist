@@ -116,3 +116,6 @@ footer {
     color: #F3F8FD;
     text-align:center;
 }
+.nav-link-p{
+    cursor:pointer !important;
+}

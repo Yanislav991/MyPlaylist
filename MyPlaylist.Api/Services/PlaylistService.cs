@@ -40,6 +40,11 @@ namespace MyPlaylist.Api.Services
             return await data.Playlists.FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        public async Task<Playlist> GetByName(string name)
+        {
+            return await data.Playlists.FirstOrDefaultAsync(x => x.Name == name);
+        }
+
         public async Task<Playlist> Update(Playlist playlist)
         {
             var record = await data.Playlists.FirstOrDefaultAsync(x=>x.Id == playlist.Id);

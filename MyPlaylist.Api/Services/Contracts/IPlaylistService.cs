@@ -5,6 +5,7 @@ namespace MyPlaylist.Api.Services.Contracts
     public interface IPlaylistService
     {
         Task<Playlist> GetById(int id);
+        Task<Playlist> GetByName(string name);
         Task<IEnumerable<Playlist>> GetAll();
         Task<Playlist> Create(Playlist playlistDTO);
         Task<Playlist> Update(Playlist playlistDTO);

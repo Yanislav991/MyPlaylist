@@ -1,8 +1,13 @@
 ﻿@page "/playlist/add"
 
-
 <h3>AddPlaylist</h3>
-
-@code {
-
+@if (IsNameTaken)
+{
+    <div>Name is already taken.</div>
 }
+<EditForm Model="@playListModel" OnSubmit="@OnSubmit">
+    <DataAnnotationsValidator />
+    <InputText id="name" @bind-Value="playListModel.Name" />
+     <ValidationMessage For="() => playListModel.Name" />
+    <button type="submit">Submit</button>
+</EditForm>

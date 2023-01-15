@@ -44,29 +44,5 @@
             </tbody>
         </table>
     }
-    <BSModal IsCentered="true" DataId="addPlaylistModal">
-        <Header>Add new Playlist</Header>
-        <Content>
-            <div class="mb-3">
-                <BSLabel>Playlist Name</BSLabel>
-                <BSInput id="playlistName"
-                         @bind-Value="NewPlaylistName"
-                         InputType="InputType.Text"
-                         placeholder="The name of the playlist." />
-            </div>
-        </Content>
-        <Footer Context="modal">
-            <BSButton Color="BSColor.Primary"
-                      @onclick=CreatePlaylist>
-                Add
-            </BSButton>
-            <BSButton MarginStart="Margins.Auto"
-                      Color="BSColor.Secondary"
-                      @onclick="modal.HideAsync">
-                Cancel
-            </BSButton>
-        </Footer>
-    </BSModal>
-    <BSButton Color="BSColor.Primary" Target="addPlaylistModal">Add new Playlist</BSButton>
 </section>
 

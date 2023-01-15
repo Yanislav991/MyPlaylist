@@ -37,7 +37,22 @@ namespace MyPlaylist.Api.Controllers
             {
                 var result = await _playlistService.GetById(id);
                 if (result == null) return NotFound();
-                return Ok(_mapper.Map<PlaylistDTO[]>(result));
+                return Ok(_mapper.Map<PlaylistDTO>(result));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, new { Message = "Something went wrong!" });
+            }
+        }
+        [HttpGet("{getByName}")]
+        public async Task<ActionResult<PlaylistDTO>> GetByName([FromQuery]string name)
+        {
+            try
+            {
+                var result = await _playlistService.GetByName(name);
+                if (result == null) return NotFound();
+                return Ok(_mapper.Map<PlaylistDTO>(result));
             }
             catch (Exception ex)
             {
@@ -51,12 +66,11 @@ namespace MyPlaylist.Api.Controllers
             try
             {
                 var newRecord = await _playlistService.Create(_mapper.Map<Playlist>(playlist));
-                return Ok(_mapper.Map<PlaylistDTO>(newRecord));
+                return Created("", _mapper.Map<PlaylistDTO>(newRecord));
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return StatusCode(500, new { Message = "Something went wrong!" });
+                return StatusCode(500, new { Message = ex.Message });
             }
         }
         [HttpPut("/update")]
