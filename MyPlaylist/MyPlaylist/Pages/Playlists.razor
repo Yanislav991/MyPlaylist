@@ -1,0 +1,72 @@
+﻿@page "/playlists/all"
+
+<h2>Playlists</h2>
+
+<section id="playlists">
+    @if (PlaylistsData.Count() == 0)
+    {
+        <h1>Currently there are no playlists in the database!</h1>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Playlist Name
+                    </th>
+                    <th>
+                        Songs Count
+                    </th>
+                    <th>
+                        Details
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var playlist in PlaylistsData)
+                {
+                    var detailsLink = $"/playlists/details/{playlist.Id}";
+                    <tr>
+                        <td>
+                            @playlist.Name
+                        </td>
+                        <td>
+                            @playlist.Songs.Count()
+                        </td>
+                        <td>
+                            <NavLink href=@detailsLink>
+                                <li>More Info</li>
+                            </NavLink>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    <BSModal IsCentered="true" DataId="addPlaylistModal">
+        <Header>Add new Playlist</Header>
+        <Content>
+            <div class="mb-3">
+                <BSLabel>Playlist Name</BSLabel>
+                <BSInput id="playlistName"
+                         @bind-Value="NewPlaylistName"
+                         InputType="InputType.Text"
+                         placeholder="The name of the playlist." />
+            </div>
+        </Content>
+        <Footer Context="modal">
+            <BSButton Color="BSColor.Primary"
+                      @onclick=CreatePlaylist>
+                Add
+            </BSButton>
+            <BSButton MarginStart="Margins.Auto"
+                      Color="BSColor.Secondary"
+                      @onclick="modal.HideAsync">
+                Cancel
+            </BSButton>
+        </Footer>
+    </BSModal>
+    <BSButton Color="BSColor.Primary" Target="addPlaylistModal">Add new Playlist</BSButton>
+</section>
+

@@ -17,7 +17,7 @@ namespace MyPlaylist.Api.Controllers
             _mapper = mapper;
             _playlistService = playlistService;
         }
-        [HttpGet("/")]
+        [HttpGet("all")]
         public async Task<ActionResult<IEnumerable<PlaylistDTO>>> Get()
         {
             try
@@ -45,7 +45,7 @@ namespace MyPlaylist.Api.Controllers
                 return StatusCode(500, new { Message = "Something went wrong!" });
             }
         }
-        [HttpPost("/create")]
+        [HttpPost("create")]
         public async Task<ActionResult<PlaylistDTO>> Create(CreatePlaylistDTO playlist)
         {
             try

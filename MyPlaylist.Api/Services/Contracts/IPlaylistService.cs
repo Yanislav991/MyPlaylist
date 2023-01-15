@@ -1,5 +1,4 @@
 ﻿using MyPlaylist.Api.Models;
-using MyPlaylist.Shared.DTO;
 
 namespace MyPlaylist.Api.Services.Contracts
 {
