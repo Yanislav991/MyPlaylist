@@ -14,6 +14,10 @@ namespace MyPlaylist.Pages
         {
             PlaylistsData = (await PlaylistDataService.GetAll()).ToList();
         }
+        private async Task AddSong(int playlistID)
+        {
+
+        }
 
     }
 }

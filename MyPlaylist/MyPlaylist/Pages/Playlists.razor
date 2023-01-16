@@ -35,8 +35,11 @@
                             @playlist.Songs.Count()
                         </td>
                         <td>
+                            <BSButton Color="BSColor.Primary" OnClick="@(()=>AddSong(playlist.Id))" Target="modal1">AddSong</BSButton>
+                        </td>
+                        <td>
                             <NavLink href=@detailsLink>
-                                <li>More Info</li>
+                                More Info
                             </NavLink>
                         </td>
                     </tr>
@@ -45,4 +48,14 @@
         </table>
     }
 </section>
+<BSModal DataId="modal1">
+    <Header>Add Song</Header>
+    <Content>
+
+    </Content>
+    <Footer Context="modal">
+        <BSButton MarginStart="Margins.Auto" Color="BSColor.Secondary" @onclick="modal.HideAsync">Close</BSButton>
+        <BSButton Color="BSColor.Primary">Add Song</BSButton>
+    </Footer>
+</BSModal>
 
